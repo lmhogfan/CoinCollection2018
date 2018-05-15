@@ -2,13 +2,11 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Penny
+public class Penny extends Coin
 {
-    int year;
-
     public Penny(int year)
     {
-        this.year=year;
+        super(year);
     }
 
     public BigDecimal getFaceValue()
@@ -20,9 +18,9 @@ public class Penny
     public BigDecimal getCollectibleValue()
     {
         BigDecimal totalValue=new BigDecimal("0.00");
-        if (year<1945)
+        if (getYear()<1945)
         {
-            BigDecimal age= new BigDecimal(1945-year);
+            BigDecimal age= new BigDecimal(1945-getYear());
             BigDecimal multiplier= new BigDecimal("0.03");
             BigDecimal addedValue =age.multiply(multiplier);
             totalValue= addedValue.add(getFaceValue());

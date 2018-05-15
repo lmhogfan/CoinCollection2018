@@ -2,32 +2,31 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Quarter
+public class Quarter extends Coin
 {
-    int year;
-
     public Quarter(int year)
     {
-        this.year=year;
+        super(year);
     }
+
     public BigDecimal getFaceValue()
     {
-        BigDecimal faceValue =new BigDecimal("0.25");
+        BigDecimal faceValue = new BigDecimal("0.25");
         return faceValue;
     }
+
     public BigDecimal getCollectibleValue()
     {
-        BigDecimal totalValue=new BigDecimal("0.00");
-        if (year<1923)
+        BigDecimal totalValue = new BigDecimal("0.00");
+        if (getYear() < 1923)
         {
-            BigDecimal age= new BigDecimal(1923-year);
-            BigDecimal multiplier= new BigDecimal("0.22");
-            BigDecimal addedValue =age.multiply(multiplier);
-            totalValue= addedValue.add(getFaceValue());
-        }
-        else
+            BigDecimal age = new BigDecimal(1923 - getYear());
+            BigDecimal multiplier = new BigDecimal("0.22");
+            BigDecimal addedValue = age.multiply(multiplier);
+            totalValue = addedValue.add(getFaceValue());
+        } else
         {
-            totalValue=getFaceValue();
+            totalValue = getFaceValue();
         }
         return totalValue;
     }

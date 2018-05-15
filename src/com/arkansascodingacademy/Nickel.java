@@ -2,13 +2,12 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Nickel
+public class Nickel extends Coin
 {
-    int year;
 
     public Nickel(int year)
     {
-        this.year=year;
+        super(year);
     }
     public BigDecimal getFaceValue()
     {
@@ -18,9 +17,9 @@ public class Nickel
     public BigDecimal getCollectibleValue()
     {
         BigDecimal totalValue=new BigDecimal("0.00");
-        if (year<1935)
+        if (getYear()<1935)
         {
-            BigDecimal age= new BigDecimal(1935-year);
+            BigDecimal age= new BigDecimal(1935-getYear());
             BigDecimal multiplier= new BigDecimal("0.10");
             BigDecimal addedValue =age.multiply(multiplier);
             totalValue= addedValue.add(getFaceValue());

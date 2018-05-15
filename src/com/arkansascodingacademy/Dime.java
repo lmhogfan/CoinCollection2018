@@ -2,13 +2,12 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Dime
+public class Dime extends Coin
 {
-    int year;
 
     public Dime(int year)
     {
-        this.year=year;
+        super(year);
     }
     public BigDecimal getFaceValue()
     {
