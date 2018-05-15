@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Penny extends Coin
+public class Penny extends Coin implements ICurrency
 {
     public Penny(int year)
     {
@@ -30,5 +30,9 @@ public class Penny extends Coin
             totalValue=getFaceValue();
         }
         return totalValue;
+    }
+    public String getName()
+    {
+        return "Penny";
     }
 }

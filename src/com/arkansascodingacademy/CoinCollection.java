@@ -2,6 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class CoinCollection
@@ -117,39 +118,19 @@ public class CoinCollection
     }
     public BigDecimal getPenniesFaceValue( )
     {
-        BigDecimal totalFaceValue= new BigDecimal("0.00");
-        for(Penny eachPenny:pennies)
-        {
-            totalFaceValue=totalFaceValue.add(eachPenny.getFaceValue());
-        }
-        return totalFaceValue;
+        return getFaceValue(pennies);
     }
     public BigDecimal getNickelsFaceValue( )
     {
-        BigDecimal totalFaceValue= new BigDecimal("0.00");
-        for(Nickel eachNickel:nickels)
-        {
-            totalFaceValue=totalFaceValue.add(eachNickel.getFaceValue());
-        }
-        return totalFaceValue;
+        return getFaceValue(nickels);
     }
     public BigDecimal getDimesFaceValue( )
     {
-        BigDecimal totalFaceValue= new BigDecimal("0.00");
-        for(Dime eachDime:dimes)
-        {
-            totalFaceValue=totalFaceValue.add(eachDime.getFaceValue());
-        }
-        return totalFaceValue;
+        return getFaceValue(dimes);
     }
     public BigDecimal getQuartersFaceValue( )
     {
-        BigDecimal totalFaceValue= new BigDecimal("0.00");
-        for(Quarter eachQuarter:quarters)
-        {
-            totalFaceValue=totalFaceValue.add(eachQuarter.getFaceValue());
-        }
-        return totalFaceValue;
+        return getFaceValue(quarters);
     }
     public BigDecimal getOnesFaceValue( )
     {
@@ -199,39 +180,19 @@ public class CoinCollection
 
     public BigDecimal getPenniesCollectibleValue( )
     {
-        BigDecimal totalCollectibleValue= new BigDecimal("0.00");
-        for(Penny eachPenny:pennies)
-        {
-            totalCollectibleValue=totalCollectibleValue.add(eachPenny.getCollectibleValue());
-        }
-        return totalCollectibleValue;
+        return getCollectibleValue(pennies);
     }
     public BigDecimal getNickelsCollectibleValue( )
     {
-        BigDecimal totalCollectibleValue= new BigDecimal("0.00");
-        for(Nickel eachNickel:nickels)
-        {
-            totalCollectibleValue=totalCollectibleValue.add(eachNickel.getCollectibleValue());
-        }
-        return totalCollectibleValue;
+        return getCollectibleValue(nickels);
     }
     public BigDecimal getDimesCollectibleValue( )
     {
-        BigDecimal totalCollectibleValue= new BigDecimal("0.00");
-        for(Dime eachDime:dimes)
-        {
-            totalCollectibleValue=totalCollectibleValue.add(eachDime.getCollectibleValue());
-        }
-        return totalCollectibleValue;
+        return getCollectibleValue(dimes);
     }
     public BigDecimal getQuartersCollectibleValue( )
     {
-        BigDecimal totalCollectibleValue= new BigDecimal("0.00");
-        for(Quarter eachQuarter:quarters)
-        {
-            totalCollectibleValue=totalCollectibleValue.add(eachQuarter.getCollectibleValue());
-        }
-        return totalCollectibleValue;
+        return getCollectibleValue(quarters);
     }
     public BigDecimal getOnesCollectibleValue( )
     {
@@ -280,7 +241,7 @@ public class CoinCollection
         }
         return totalCollectibleValue.setScale(2);
     }
-    public BigDecimal getCollectibleValue()
+    public BigDecimal getTotalCollectibleValue()
     {
         return getPenniesCollectibleValue().add(getNickelsCollectibleValue()
                 .add(getDimesCollectibleValue().add(getQuartersCollectibleValue()
@@ -288,13 +249,31 @@ public class CoinCollection
                                 .add(getTensCollectibleValue().add(getTwentiesCollectibleValue()
                                         .add(getHundredsCollectibleValue()))))))));
     }
-    public BigDecimal getFaceValue()
+    public BigDecimal getTotalFaceValue()
     {
         return getPenniesFaceValue().add(getNickelsFaceValue()
                 .add(getDimesFaceValue().add(getQuartersFaceValue()
                 .add(getOnesFaceValue().add(getFivesFaceValue().add(getTensFaceValue()
                 .add(getTwentiesFaceValue().add(getHundredsFaceValue()))))))));
 
+    }
+    private BigDecimal getFaceValue(Collection<? extends ICurrency> sum)
+    {
+        BigDecimal total= new BigDecimal("0.00");
+       for (ICurrency value:sum)
+       {
+           total=total.add(value.getFaceValue());
+       }
+       return total;
+    }
+    private BigDecimal getCollectibleValue(Collection<? extends ICurrency> sum)
+    {
+        BigDecimal total= new BigDecimal("0.00");
+        for (ICurrency value:sum)
+        {
+            total=total.add(value.getCollectibleValue());
+        }
+        return total;
     }
     public boolean existingSerialOnes(int year, int serialNumber)
     {

@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Nickel extends Coin
+public class Nickel extends Coin implements ICurrency
 {
 
     public Nickel(int year)
@@ -29,5 +29,9 @@ public class Nickel extends Coin
             totalValue=getFaceValue();
         }
         return totalValue;
+    }
+    public String getName()
+    {
+        return "Nickel";
     }
 }

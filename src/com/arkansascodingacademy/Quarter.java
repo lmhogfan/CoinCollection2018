@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Quarter extends Coin
+public class Quarter extends Coin implements ICurrency
 {
     public Quarter(int year)
     {
@@ -29,5 +29,9 @@ public class Quarter extends Coin
             totalValue = getFaceValue();
         }
         return totalValue;
+    }
+    public String getName()
+    {
+        return "Quarter";
     }
 }

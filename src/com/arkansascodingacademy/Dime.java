@@ -2,7 +2,7 @@ package com.arkansascodingacademy;
 
 import java.math.BigDecimal;
 
-public class Dime extends Coin
+public class Dime extends Coin implements ICurrency
 {
 
     public Dime(int year)
@@ -17,5 +17,9 @@ public class Dime extends Coin
     public BigDecimal getCollectibleValue()
     {
         return getFaceValue();
+    }
+    public String getName()
+    {
+        return "Dime";
     }
 }
